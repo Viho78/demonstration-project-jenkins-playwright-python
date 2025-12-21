@@ -9,6 +9,7 @@ page_url = r'https://automationintesting.online/'
 @allure.suite("SMOKE TESTS")
 @allure.story("Item 105001")
 @allure.label("owner", "JStanczyk")
+@allure.severity(allure.severity_level.BLOCKER)
 @pytest.mark.smoke
 def test_page_opens(page: Page):
     page.goto(page_url)
@@ -21,6 +22,7 @@ def test_page_opens(page: Page):
 @allure.suite("SMOKE TESTS")
 @allure.story("Item 105001")
 @allure.label("owner", "JStanczyk")
+@allure.severity(allure.severity_level.BLOCKER)
 @pytest.mark.smoke
 def test_get_started_link(page: Page):
     page.goto(page_url)
