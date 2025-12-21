@@ -1,22 +1,23 @@
 import re
 from playwright.sync_api import Page, expect
+import pytest
 
+#url for training site to practice web ui test automation
+#page is about booking platform for the hotel
+page_url = r'https://automationintesting.online/'
  
-def test_has_title(page: Page):
-    page.goto("https://playwright.dev/")
+def test_page_opens(page: Page):
+    page.goto(page_url)
 
-    # Expect a title "to contain" a substring.
-    expect(page).to_have_title(re.compile("Playwright"))
+    # Expect a title to be equal
+    expect(page).to_have_title("Restful-booker-platform demo")
+    # Expects page to have a div with the name of the hotel.
+    expect(page.locator("#root-container")).to_contain_text("Shady Meadows B&B")
 
 def test_get_started_link(page: Page):
-    page.goto("https://playwright.dev/")
+    page.goto(page_url)
 
-    # Click the get started link.
-    page.get_by_role("link", name="Get started").click()
+    pass
 
-    # Expects page to have a heading with the name of Installation.
-    expect(page.get_by_role("heading", name="Installation")).to_be_visible()
-
-
-if main == "__main__":
+if __name__ == "__main__":
     pass
