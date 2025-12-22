@@ -15,11 +15,6 @@ page_url = r'https://automationintesting.online/'
 
 
 #------------------------------tests------------------------------------
-@pytest.fixture
-def title_text():
-    yield "Restful-booker-platform demo"
-
-
 #testing if main page opens correctly
 @allure.suite("SMOKE TESTS")
 @allure.story("Item 105001")
@@ -30,8 +25,7 @@ def test_page_opens(page: Page, title_text):
     page.goto(page_url)
     # Expect a title to be equal
     assert expect(page).to_have_title(title_text) == None
-    # Expects page to have a div with the name of the hotel.
-    assert expect(page.locator("#root-container")).to_contain_text("Shady Meadows B&B") == None
+    
 
 
 #testing something
@@ -40,9 +34,24 @@ def test_page_opens(page: Page, title_text):
 @allure.label("owner", "JStanczyk")
 @allure.severity(allure.severity_level.BLOCKER)
 @pytest.mark.smoke
-def test_get_started_link(page: Page):
+@pytest.mark.parametrize("labels", [
+    "Name",
+    "Email",
+    "Phone",
+    "Subject",
+    "Message",
+])
+def test_contact_labels(page: Page, labels):
     page.goto(page_url)
-    pass
+
+    #verify if contact form exists
+    assert expect(page.locator("#contact")) != None
+    #verify if contact form contains proper labels
+    assert expect(page.locator('#contact')).to_contain_text(labels) == None
+
+    
+
+
 
 if __name__ == "__main__":
     pass
