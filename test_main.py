@@ -10,6 +10,11 @@ import allure
 #page is about booking platform for the hotel
 page_url = r'https://automationintesting.online/'
 
+@pytest.fixture(scope="session")
+def browser(playwright):
+    browser = playwright.firefox.launch(headless=False)
+    yield browser
+    browser.close()
 
 #------------------------------tests------------------------------------
 #testing if main page opens correctly
