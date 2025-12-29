@@ -7,6 +7,7 @@ Report is showed in **Allure Report**
 Used: **Python** / **Playwright**
 
 Web UI - https://automationintesting.online/ -> hotel booking page
+
 API - https://automationintesting.online/ -> hotel booking page
 
 SQL - ?
