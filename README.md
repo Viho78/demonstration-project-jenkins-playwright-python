@@ -7,6 +7,7 @@ Report is showed in **Allure Report**
 Used: **Python** / **Playwright**
 
 There are 3 files, each one for different tests type
+
 Web UI - test_main.py - https://automationintesting.online/ -> hotel booking page
 
 API - not done yet -  https://automationintesting.online/ -> hotel booking page
