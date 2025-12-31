@@ -9,13 +9,6 @@ import testdata
 #page is about booking platform for the hotel
 page_url = r'https://automationintesting.online/'
 
-#this should be commented, used to run tests locally with arguments. When runned from command line it will forece running only with firefox browser
-#@pytest.fixture(scope="session")
-#def browser(playwright):
-#    browser = playwright.firefox.launch(headless=False, timeout=10000)
-#    yield browser
-#    browser.close()
-
 #------------------------------tests------------------------------------
 #testing if main page opens correctly
 @allure.suite("Contact form")
