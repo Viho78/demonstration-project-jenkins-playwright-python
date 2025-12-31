@@ -1,5 +1,4 @@
 import pytest
-import requests
 
 @pytest.fixture
 def title_text():
@@ -13,4 +12,3 @@ def title_text():
 #    yield browser
 #    browser.close()
 
-#test6666666666665
