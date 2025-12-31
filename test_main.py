@@ -8,7 +8,7 @@ import testdata
 #url for training site to practice web ui test automation
 #page is about booking platform for the hotel
 page_url = r'https://automationintesting.online/'
-#test comment 6
+#test comment 7
 #------------------------------tests------------------------------------
 #testing if main page opens correctly
 @allure.suite("Contact form")
