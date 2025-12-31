@@ -6,9 +6,9 @@ import testdata
 
 #------------------------------statics------------------------------------
 #url for training site to practice web ui test automation
-#page is about booking platform for the hotel
+#the page is a booking platform for the hotel
 page_url = r'https://automationintesting.online/'
-#test comment 9
+
 #------------------------------tests------------------------------------
 #testing if main page opens correctly
 @allure.suite("Contact form")
@@ -43,7 +43,8 @@ def test_contact_form_opens(page: Page):
 @pytest.mark.parametrize("name, email, phone, subject, description", 
                          [testdata.testdata_correct_1, 
                           testdata.testdata_correct_2_max_chars, 
-                          testdata.testdata_correct_3_min_chars])
+                          testdata.testdata_correct_3_min_chars],
+                          ids=["correct data 1", "correct data max chars", "correct data min chars"])
 def test_contact_happy(page: Page, name, email, phone, subject, description):
     page.goto(page_url)
     
@@ -80,7 +81,11 @@ def test_contact_happy(page: Page, name, email, phone, subject, description):
                           testdata.testdata_bad_subject_3,
                           testdata.testdata_bad_message_1,
                           testdata.testdata_bad_message_2,
-                          testdata.testdata_bad_message_3])
+                          testdata.testdata_bad_message_3],
+                          ids=["name empty", "name too long", "email null", "email too long", 
+                               "email missing @", "phone null", "phone too long", "phone too short", 
+                               "subject null", "subject too long", "subject too short", "message null", 
+                               "message too long", "message too short"])
 def test_contact_error(page: Page, name, email, phone, subject, description, expected_error):
     page.goto(page_url)
     page.get_by_test_id("ContactName").fill(name)
@@ -115,8 +120,8 @@ def test_contact_error(page: Page, name, email, phone, subject, description, exp
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.parametrize("name, email, phone, subject, description, expected_error_1, expected_error_2, " \
                             "expected_error_3, expected_error_4, expected_error_5, name_ok, email_ok, phone_ok, subject_ok, description_ok", 
-                         [testdata.testdata_bad_multiple_1, 
-                        ])
+                         [testdata.testdata_bad_multiple_1, ], 
+                         ids=["multipple errors"])
 def test_contact_multiple_error(page: Page, name, email, phone, subject, description, expected_error_1, 
                               expected_error_2, expected_error_3, expected_error_4, expected_error_5, name_ok, email_ok, phone_ok, subject_ok, description_ok):
     page.goto(page_url)
@@ -161,7 +166,8 @@ def test_contact_multiple_error(page: Page, name, email, phone, subject, descrip
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.parametrize("name, email, phone, subject, description, expected_error_1, expected_error_2, expected_error_3", 
                          [testdata.testdata_injection_1, 
-                          testdata.testdata_injection_2])
+                          testdata.testdata_injection_2],
+                          ids=["injection test 1", "injection test 2"])
 def test_contact_injection(page: Page, name, email, phone, subject, description, expected_error_1, 
                               expected_error_2, expected_error_3):
     page.goto(page_url)
