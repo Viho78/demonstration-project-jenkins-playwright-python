@@ -16,7 +16,9 @@ There are 3 files, each one for different tests type
 
 
 -------------------------------- 1. UI ---------------------------------------------
+
 Example tests I would create to test "Send Us a Message" (contact form) feature on the given Web App
+
 1. Happy flow (with special chars)
 2. Happy flow max chars
 3. Happy flow min chars
@@ -45,9 +47,12 @@ And this is example Allure Report after build is finished.
 
 
 -------------------------------- 2. API ---------------------------------------------
+
 Simple example of tests, creation of booking, updating and later deleting test data within the fixture after 'yeald'
 
+<img width="844" height="240" alt="image" src="https://github.com/user-attachments/assets/ed42edd2-2330-4347-97e7-8a68fd604d1f" />
 
 
 -------------------------------- 3. SQL ---------------------------------------------
+
 TODO
