@@ -8,9 +8,9 @@ Used: **Python** / **Playwright**
 
 There are 3 files, each one for different tests type
 
-Web UI - test_main.py - https://automationintesting.online/ -> hotel booking page
+Web UI - test_UI.py / testdata_UI - https://automationintesting.online/ -> hotel booking page
 
-API - not done yet -  https://automationintesting.online/ -> hotel booking page
+API - test_API.py / testdata_API -  https://automationintesting.online/ -> hotel booking page
 
 SQL - not done yet - ?
 
