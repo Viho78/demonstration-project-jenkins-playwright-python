@@ -1,3 +1,5 @@
+#old file name - whole code was moved to test_UI.py
+'''
 #------------------------------------------------------------------
 from playwright.sync_api import Page, expect
 import pytest
@@ -193,3 +195,4 @@ def test_contact_injection(page: Page, name, email, phone, subject, description,
 
 if __name__ == "__main__":
     pass
+'''
