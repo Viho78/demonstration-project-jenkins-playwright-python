@@ -1,4 +1,6 @@
+#old file name - whole code was moved to testdata_UI.py
 
+'''
 #-------------------------this is test data for contact form tests - UI---------------
 #-------------correct - name, email, phone, subject, message
 #regular correct set of data
@@ -140,4 +142,4 @@ testdata_injection_2 = [('" or ""="'), ('qwert@mail.com'), ('123123123123123'), 
                            (""),
                            ("")]
 
-
+'''
