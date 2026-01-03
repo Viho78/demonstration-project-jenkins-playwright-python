@@ -8,14 +8,14 @@ Used: **Python** / **Playwright**
 
 There are 3 files, each one for different tests type
 
-Web UI - test_UI.py / testdata_UI - https://automationintesting.online/ -> hotel booking page
+1. Web UI - test_UI.py / testdata_UI - https://automationintesting.online/ -> hotel booking page
 
-API - test_API.py / testdata_API -  https://automationintesting.online/ -> hotel booking page
+2. API - test_API.py / testdata_API -  https://restful-booker.herokuapp.com/apidoc/index.html#api-Auth-CreateToken -> hotel booking page mathods
 
-SQL - not done yet - ?
+3. SQL - not done yet - ?
 
 
-
+-------------------------------- 1. UI ---------------------------------------------
 Example tests I would create to test "Send Us a Message" (contact form) feature on the given Web App
 1. Happy flow (with special chars)
 2. Happy flow max chars
@@ -42,3 +42,12 @@ And this is example Allure Report after build is finished.
 <img width="1144" height="609" alt="image" src="https://github.com/user-attachments/assets/8f95dc6f-fd4f-419a-9300-502955804770" />
 
 <img width="983" height="851" alt="image" src="https://github.com/user-attachments/assets/e97493d0-cdaf-46e4-9036-264566451bd9" />
+
+
+-------------------------------- 2. API ---------------------------------------------
+Simple example of tests, creation of booking, updating and later deleting test data within the fixture after 'yeald'
+
+
+
+-------------------------------- 3. SQL ---------------------------------------------
+TODO
