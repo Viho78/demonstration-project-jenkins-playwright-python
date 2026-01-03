@@ -2,7 +2,7 @@
 from playwright.sync_api import Page, expect
 import pytest
 import allure
-import testdata 
+import testdata_UI 
 
 #------------------------------statics------------------------------------
 #url for training site to practice web ui test automation
@@ -41,9 +41,9 @@ def test_contact_form_opens(page: Page):
 @allure.severity(allure.severity_level.BLOCKER)
 @pytest.mark.smoke
 @pytest.mark.parametrize("name, email, phone, subject, description", 
-                         [testdata.testdata_correct_1, 
-                          testdata.testdata_correct_2_max_chars, 
-                          testdata.testdata_correct_3_min_chars],
+                         [testdata_UI.testdata_correct_1, 
+                          testdata_UI.testdata_correct_2_max_chars, 
+                          testdata_UI.testdata_correct_3_min_chars],
                           ids=["correct data 1", "correct data max chars", "correct data min chars"])
 def test_contact_happy(page: Page, name, email, phone, subject, description):
     page.goto(page_url)
@@ -68,20 +68,20 @@ def test_contact_happy(page: Page, name, email, phone, subject, description):
 @allure.label("owner", "JStanczyk")
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.parametrize("name, email, phone, subject, description, expected_error", 
-                         [testdata.testdata_bad_name_1, 
-                          testdata.testdata_bad_name_2,
-                          testdata.testdata_bad_email_1,
-                          testdata.testdata_bad_email_2,
-                          testdata.testdata_bad_email_3,
-                          testdata.testdata_bad_phone_1,
-                          testdata.testdata_bad_phone_2,
-                          testdata.testdata_bad_phone_3,
-                          testdata.testdata_bad_subject_1,
-                          testdata.testdata_bad_subject_2,
-                          testdata.testdata_bad_subject_3,
-                          testdata.testdata_bad_message_1,
-                          testdata.testdata_bad_message_2,
-                          testdata.testdata_bad_message_3],
+                         [testdata_UI.testdata_bad_name_1, 
+                          testdata_UI.testdata_bad_name_2,
+                          testdata_UI.testdata_bad_email_1,
+                          testdata_UI.testdata_bad_email_2,
+                          testdata_UI.testdata_bad_email_3,
+                          testdata_UI.testdata_bad_phone_1,
+                          testdata_UI.testdata_bad_phone_2,
+                          testdata_UI.testdata_bad_phone_3,
+                          testdata_UI.testdata_bad_subject_1,
+                          testdata_UI.testdata_bad_subject_2,
+                          testdata_UI.testdata_bad_subject_3,
+                          testdata_UI.testdata_bad_message_1,
+                          testdata_UI.testdata_bad_message_2,
+                          testdata_UI.testdata_bad_message_3],
                           ids=["name empty", "name too long", "email null", "email too long", 
                                "email missing @", "phone null", "phone too long", "phone too short", 
                                "subject null", "subject too long", "subject too short", "message null", 
@@ -120,7 +120,7 @@ def test_contact_error(page: Page, name, email, phone, subject, description, exp
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.parametrize("name, email, phone, subject, description, expected_error_1, expected_error_2, " \
                             "expected_error_3, expected_error_4, expected_error_5, name_ok, email_ok, phone_ok, subject_ok, description_ok", 
-                         [testdata.testdata_bad_multiple_1, ], 
+                         [testdata_UI.testdata_bad_multiple_1, ], 
                          ids=["multipple errors"])
 def test_contact_multiple_error(page: Page, name, email, phone, subject, description, expected_error_1, 
                               expected_error_2, expected_error_3, expected_error_4, expected_error_5, name_ok, email_ok, phone_ok, subject_ok, description_ok):
@@ -165,8 +165,8 @@ def test_contact_multiple_error(page: Page, name, email, phone, subject, descrip
 @allure.label("owner", "JStanczyk")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.parametrize("name, email, phone, subject, description, expected_error_1, expected_error_2, expected_error_3", 
-                         [testdata.testdata_injection_1, 
-                          testdata.testdata_injection_2],
+                         [testdata_UI.testdata_injection_1, 
+                          testdata_UI.testdata_injection_2],
                           ids=["injection test 1", "injection test 2"])
 def test_contact_injection(page: Page, name, email, phone, subject, description, expected_error_1, 
                               expected_error_2, expected_error_3):
