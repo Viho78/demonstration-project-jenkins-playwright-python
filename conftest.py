@@ -1,6 +1,7 @@
 import pytest
 import requests
 import secret # file containing @username= and @password= variables
+import os 
 
 @pytest.fixture
 def title_text():
@@ -9,10 +10,16 @@ def title_text():
 @pytest.fixture
 def get_API_token():
     url = "https://restful-booker.herokuapp.com/auth"
-    payload = {
-        "username": secret.username,
-        "password": secret.password
-    }
+    if 'username' not in os.environ or 'password' not in os.environ:
+        payload = {
+            "username": secret.username,
+            "password": secret.password
+        }
+    else:
+        payload = {
+            "username": os.environ['username'], #TODO opis
+            "password": os.environ['password']
+        }
     response = requests.post(url, json=payload)
     response.raise_for_status()
     token = response.json().get("token")
