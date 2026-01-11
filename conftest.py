@@ -10,14 +10,15 @@ def title_text():
 @pytest.fixture
 def get_API_token():
     url = "https://restful-booker.herokuapp.com/auth"
-    if 'username' not in os.environ or 'password' not in os.environ:
-        payload = {
+    #for running API tests locally without setting env variables
+    if 'username' not in os.environ or 'password' not in os.environ:   
+        payload = { 
             "username": secret.username,
             "password": secret.password
         }
-    else:
+    else: #for running API via Jenkins where credentials are set as env variables
         payload = {
-            "username": os.environ['username'], #TODO opis
+            "username": os.environ['username'], 
             "password": os.environ['password']
         }
     response = requests.post(url, json=payload)
