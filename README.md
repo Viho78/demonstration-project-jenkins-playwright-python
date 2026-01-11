@@ -1,7 +1,10 @@
 # demonstration-project-jenkins-playwright-python
-**Demonstration project for python automated testing with usage of playwright / jenkins / requests / pymssql / oracledb I would write for Hotel Booking page.
-This are very simplistic scenarios to test comparing to real life cases I tested, however I think of it as a fairly quick to read and vaulable sample for recruitment processes.
-Juliusz Stańczyk**
+Hello!
+
+**This is demonstration project for python automated testing with usage of playwright / jenkins / requests / pymssql / oracledb I would write for Hotel Booking page.**
+
+**This are very simplistic scenarios to test comparing to real life cases I tested, however I think of it as a fairly quick to read and vaulable sample for recruitment processes.**
+Juliusz Stańczyk
 
 Tests are integrated from my local machine to **Git/Jenkins** with use of **SocketXP** (it casts localhost to public address so it can be used as Github's Webhook)
 Report is showed in **Allure Report**
@@ -62,11 +65,15 @@ Also part of logs from Jenkins build where tests were run:
 <img width="523" height="19" alt="image" src="https://github.com/user-attachments/assets/81308b36-29c6-4f31-9d89-ec8cd6679961" />
 
 
+
+
 -------------------------------- 2. API ---------------------------------------------
 
 Simple example of tests, creation of booking, updating and later deleting test data within the fixture after 'yeald'
 
 <img width="844" height="240" alt="image" src="https://github.com/user-attachments/assets/ed42edd2-2330-4347-97e7-8a68fd604d1f" />
+
+
 
 
 -------------------------------- 3. Beckend SQL ---------------------------------------------
