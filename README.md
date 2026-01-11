@@ -4,6 +4,7 @@ Hello!
 **This is demonstration project for python automated testing with usage of playwright / jenkins / requests / pymssql / oracledb I would write for Hotel Booking page.**
 
 **This are very simplistic scenarios to test comparing to real life cases I tested, however I think of it as a fairly quick to read and vaulable sample for recruitment processes.**
+
 Juliusz Stańczyk
 
 
