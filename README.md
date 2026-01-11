@@ -4,7 +4,7 @@ Juliusz Stańczyk
 
 Tests are integrated from my local machine to **Git/Jenkins** with use of **SocketXP** (it casts localhost to public address so it can be used as Github's Webhook)
 Report is showed in **Allure Report**
-Used: **Python** / **Playwright**
+Used: **Python** / **Playwright** / **requests**
 
 There are 3 files, each one for different tests type
 
@@ -30,11 +30,14 @@ Example tests I would create to test "Send Us a Message" (contact form) feature 
 9. SQL injection test
 
 Above is covered in 6 test functions run on 22 datasets with pytest parametrize. All written in test_main.py and testdata.py (when run from jenkins it is multiplayed by 3 browsers),
-Note: 
+
+Note that: 
 
 a) There are several test that fail. I'm aware of it and in my opinion these would be defects in real life scenarios. I added my comments in the code to mark them
 
 b) Jenkins build is configured to not fail whole build if some tests fail
+
+c) Passwords for API are not stored in secret.py file (only locally on my machine) but are setup as variables with Jenkins build
 
 
 This is how it looks like run win VS Code
@@ -46,9 +49,16 @@ This is how it looks like run win VS Code
 And this is example Allure Report after build is finished. 
 (Jenkins is configured to install needed packages on build and run all the tests with 'pytest --browser webkit --browser firefox --browser chromium --alluredir=report --junitxml=result.xml --html=report.html')
 
-<img width="1144" height="609" alt="image" src="https://github.com/user-attachments/assets/8f95dc6f-fd4f-419a-9300-502955804770" />
+<img width="1073" height="675" alt="image" src="https://github.com/user-attachments/assets/8e5bba33-d18f-404e-a859-a4e01c35da45" />
 
-<img width="983" height="851" alt="image" src="https://github.com/user-attachments/assets/e97493d0-cdaf-46e4-9036-264566451bd9" />
+<img width="1075" height="972" alt="image" src="https://github.com/user-attachments/assets/34d208f2-9b0f-495e-a8bf-4885c669fc05" />
+
+
+
+Also part of logs from Jenkins build where tests were run:
+(here there are 22 UI tests * 3 browsers + 6 API tests)
+
+<img width="523" height="19" alt="image" src="https://github.com/user-attachments/assets/81308b36-29c6-4f31-9d89-ec8cd6679961" />
 
 
 -------------------------------- 2. API ---------------------------------------------
