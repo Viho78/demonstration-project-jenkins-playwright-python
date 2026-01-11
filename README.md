@@ -1,6 +1,7 @@
 # demonstration-project-jenkins-playwright-python
-Demonstration project for python automated testing with usage of playwright / jenkins and other
-Juliusz Stańczyk
+**Demonstration project for python automated testing with usage of playwright / jenkins / requests / pymssql / oracledb I would write for Hotel Booking page.
+This are very simplistic scenarios to test comparing to real life cases I tested, however I think of it as a fairly quick to read and vaulable sample for recruitment processes.
+Juliusz Stańczyk**
 
 Tests are integrated from my local machine to **Git/Jenkins** with use of **SocketXP** (it casts localhost to public address so it can be used as Github's Webhook)
 Report is showed in **Allure Report**
@@ -12,7 +13,7 @@ There are 3 files, each one for different tests type
 
 2. API - test_API.py / testdata_API -  https://restful-booker.herokuapp.com/apidoc/index.html#api-Auth-CreateToken -> hotel booking page mathods
 
-3. SQL - not done yet - ?
+3. SQL - test_DB.py / testdata_DB - fake DB connections just to demonstrate backend automated tests with SQL -> using similar example for hotel booking system
 
 
 -------------------------------- 1. UI ---------------------------------------------
@@ -29,7 +30,7 @@ Example tests I would create to test "Send Us a Message" (contact form) feature 
 8. After attepting to isert bad data, it is still possible to Submit form with success
 9. SQL injection test
 
-Above is covered in 6 test functions run on 22 datasets with pytest parametrize. All written in test_main.py and testdata.py (when run from jenkins it is multiplayed by 3 browsers),
+Above is covered in 6 test methods run on 22 datasets with pytest parametrize. All written in test_main.py and testdata.py (when run from jenkins it is multiplayed by 3 browsers),
 
 Note that: 
 
@@ -68,6 +69,8 @@ Simple example of tests, creation of booking, updating and later deleting test d
 <img width="844" height="240" alt="image" src="https://github.com/user-attachments/assets/ed42edd2-2330-4347-97e7-8a68fd604d1f" />
 
 
--------------------------------- 3. SQL ---------------------------------------------
+-------------------------------- 3. Beckend SQL ---------------------------------------------
 
-TODO
+For automated backend testing with SQL I imagined scenario of migrating from Legacy DB to new one. As this DBs and scenario is faked this won't work in current setup. This is to showoff how this may be written.
+
+Program has fixtures to set DB connetions in conftest.py. In test_DB.py it has test_ method to simulate scenario of testing migration one booking record from one DB to another. It has related 2 methods for running SQL procedure to run the synchronisation and other one to conmpare actuall and expected SQL results.
