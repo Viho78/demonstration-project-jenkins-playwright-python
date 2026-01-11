@@ -6,6 +6,9 @@ Hello!
 **This are very simplistic scenarios to test comparing to real life cases I tested, however I think of it as a fairly quick to read and vaulable sample for recruitment processes.**
 Juliusz Stańczyk
 
+
+-------------------------------- General introduction ---------------------------------------------
+
 Tests are integrated from my local machine to **Git/Jenkins** with use of **SocketXP** (it casts localhost to public address so it can be used as Github's Webhook)
 Report is showed in **Allure Report**
 Used: **Python** / **Playwright** / **requests**
