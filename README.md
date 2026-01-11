@@ -30,7 +30,12 @@ Example tests I would create to test "Send Us a Message" (contact form) feature 
 9. SQL injection test
 
 Above is covered in 6 test functions run on 22 datasets with pytest parametrize. All written in test_main.py and testdata.py (when run from jenkins it is multiplayed by 3 browsers),
-Note: There are several test that fail. I'm aware of it and in my opinion these would be defects in real life scenarios. I added my comments in the code to mark them.
+Note: 
+
+a) There are several test that fail. I'm aware of it and in my opinion these would be defects in real life scenarios. I added my comments in the code to mark them
+
+b) Jenkins build is configured to not fail whole build if some tests fail
+
 
 This is how it looks like run win VS Code
 
