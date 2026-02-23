@@ -4,6 +4,9 @@ import secret # file containing @username= and @password= variables
 import os 
 import pymssql
 
+from playwright.sync_api import APIRequestContext, Playwright
+from typing import Optional, Generator
+
 #--------------------------for UI tests--------------------------
 @pytest.fixture
 def title_text():
@@ -28,6 +31,24 @@ def get_API_token():
     response.raise_for_status()
     token = response.json().get("token")
     yield token
+
+@pytest.fixture()
+def api_request_context( playwright: Playwright, get_API_token) -> Generator[APIRequestContext, None, None]:
+    url = "https://restful-booker.herokuapp.com/auth"
+    headers = {
+        "Authorization": f"token {get_API_token}",
+    }
+    request_context = playwright.request.new_context(
+        base_url=url, extra_http_headers=headers
+    )
+    yield request_context
+    request_context.dispose()
+
+
+
+
+
+
 
 #--------------------------for backend SQL tests--------------------------
 @pytest.fixture
