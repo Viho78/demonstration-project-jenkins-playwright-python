@@ -4,14 +4,10 @@ import allure
 import testdata_API 
 import requests
 
-from playwright.sync_api import APIRequestContext, Playwright
-from typing import Optional
+from playwright.sync_api import APIRequestContext
 
 
-@allure.suite("API Bookings")
-@allure.story("Item 105099")
-@allure.label("owner", "JStanczyk")
-class Test_ContactFormTests():
+class ContactFormAPIPOM:
     #url for training site to practice web API test automation
     #this is the API for booking page for a hotel demo site
     url_booking = "https://restful-booker.herokuapp.com/booking"
@@ -39,7 +35,26 @@ class Test_ContactFormTests():
         response_del = requests.put(self.url_booking + "/" + str(booking_id), json=json_payload, headers=headers)
         print("\nDELETE RESPONSE STATUS CODE:", response_del.status_code, 'FOR BOOKING ID:', booking_id)
 
-    #------------------------------tests------------------------------------
+    def get_payload_create_booking(self, firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds) -> dict:
+        json_payload = {
+            "firstname": firstname,
+            "lastname": lastname,
+            "totalprice": totalprice,
+            "depositpaid": depositpaid,
+            "bookingdates": {
+                "checkin": checkin,
+                "checkout": checkout
+            },
+            "additionalneeds": additionalneeds
+        }
+        yield json_payload
+
+
+@allure.suite("API Bookings")
+@allure.story("Item 105099")
+@allure.label("owner", "JStanczyk")
+class Test_ContactFormTests(ContactFormAPIPOM):
+
     #GetBookings smoke test
     @allure.severity(allure.severity_level.BLOCKER)
     @pytest.mark.smoke
@@ -57,17 +72,7 @@ class Test_ContactFormTests():
                             testdata_API.createbooking_testset_3],
                             ids=["create booking test 1", "create booking test 2", "create booking test 3"])
     def test_create_booking(self,firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds):
-        json_payload = {
-            "firstname": firstname,
-            "lastname": lastname,
-            "totalprice": totalprice,
-            "depositpaid": depositpaid,
-            "bookingdates": {
-                "checkin": checkin,
-                "checkout": checkout
-            },
-            "additionalneeds": additionalneeds
-        }
+        json_payload = self.get_payload_create_booking(firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds)
         response = requests.post(self.url_booking, json=json_payload)
 
         #veryfing all response data to match input data
@@ -91,18 +96,9 @@ class Test_ContactFormTests():
     def test_update_booking(self, get_API_token, create_booking_fixture, firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds):
         booking_id = create_booking_fixture
         headers = {'Cookie': 'token=' + get_API_token}
-        json_payload = {
-            "firstname": firstname,
-            "lastname": lastname,
-            "totalprice": totalprice,
-            "depositpaid": depositpaid,
-            "bookingdates": {
-                "checkin": checkin,
-                "checkout": checkout
-            },
-            "additionalneeds": additionalneeds
-        }
+        json_payload = self.get_payload_create_booking(firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds)
         new_url = self.url_booking + "/" + str(booking_id)
+        
         response = requests.put(new_url, json=json_payload, headers=headers)
 
         #veryfing all response data to match input data
@@ -120,7 +116,23 @@ class Test_ContactFormTests():
 
 
 
-#its the same but using Playwright APIRequestContext instead of requests library to make API calls, just to practice using Playwright for API testing as well
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# It is the same but using Playwright APIRequestContext instead of requests library to make API calls, just to practice using Playwright for API testing as well
+# I skipped POM for this one
 class Test_ContactFormTests_PW:
     
     url_booking = r"https://restful-booker.herokuapp.com/booking"
