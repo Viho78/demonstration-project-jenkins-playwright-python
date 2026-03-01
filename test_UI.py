@@ -20,7 +20,7 @@ class FrontPagePOM:
     __page_url__ = r'https://automationintesting.online/'
 
     def open_page(self, page: Page):
-        self.__page__ = page
+        self.page = page
         page.goto(self.__page_url__)
 
     def check_availability(self, page: Page):
@@ -37,12 +37,12 @@ class FrontPagePOM:
 
     def send_email(self, name, email, phone, subject, description) -> None:
         #inserting test data into contact form
-        self.__page__.get_by_test_id("ContactName").fill(name)
-        self.__page__.get_by_test_id("ContactEmail").fill(email)
-        self.__page__.get_by_test_id("ContactPhone").fill(phone)
-        self.__page__.get_by_test_id("ContactSubject").fill(subject)
-        self.__page__.get_by_test_id("ContactDescription").fill(description)
-        self.__page__.get_by_role("button", name="Submit").click()
+        self.page.get_by_test_id("ContactName").fill(name)
+        self.page.get_by_test_id("ContactEmail").fill(email)
+        self.page.get_by_test_id("ContactPhone").fill(phone)
+        self.page.get_by_test_id("ContactSubject").fill(subject)
+        self.page.get_by_test_id("ContactDescription").fill(description)
+        self.page.get_by_role("button", name="Submit").click()
 
 
 
@@ -56,7 +56,7 @@ class Test_ContactFormTests(FrontPagePOM):
     @pytest.mark.smoke
     def test_page_opens(self, page: Page, title_text):
         FrontPagePOM.open_page(self, page)
-        assert expect(self.__page__).to_have_title(title_text) == None
+        assert expect(self.page).to_have_title(title_text) == None
 
     #testing if contact form is visible
     @allure.story("Item 105001")
@@ -66,9 +66,9 @@ class Test_ContactFormTests(FrontPagePOM):
         FrontPagePOM.open_page(self, page)
 
         #verify if contact form exists
-        assert expect(self.__page__.locator("#contact")).to_be_visible() == None
+        assert expect(self.page.locator("#contact")).to_be_visible() == None
         #verify if contact form contains proper title
-        assert expect(self.__page__.locator("#contact")).to_contain_text("Send Us a Message") == None
+        assert expect(self.page.locator("#contact")).to_contain_text("Send Us a Message") == None
 
     #contact form happy flow
     @allure.story("Item 105001")
@@ -84,10 +84,10 @@ class Test_ContactFormTests(FrontPagePOM):
         FrontPagePOM.send_email(self, name, email, phone, subject, description)
         
         #verifying successful submission communiates
-        assert expect(self.__page__.get_by_text(f"Thanks for getting in touch {name}")).to_be_visible(timeout=20000) == None #extra time to process
-        assert expect(self.__page__.get_by_text("We'll get back to you about")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text(f"{subject}")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text("as soon as possible.")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"Thanks for getting in touch {name}")).to_be_visible(timeout=20000) == None #extra time to process
+        assert expect(self.page.get_by_text("We'll get back to you about")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{subject}")).to_be_visible() == None
+        assert expect(self.page.get_by_text("as soon as possible.")).to_be_visible() == None
 
     #contact form - errors in single field
     @allure.story("Item 105006")
@@ -117,16 +117,16 @@ class Test_ContactFormTests(FrontPagePOM):
 
         #verifying error messages for a field
         if name == "" or email == "" or phone == "" or subject == "" or description == "": #if a field empty
-            assert expect(self.__page__.get_by_text(f"{expected_error}")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{expected_error}")).to_be_visible() == None
         elif email != "" and "@" not in email: #if email without @
-            assert expect(self.__page__.get_by_text(f"{expected_error}")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{expected_error}")).to_be_visible() == None
         else: #if a field too long
-            assert expect(self.__page__.get_by_text(f"{expected_error}")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{expected_error}")).to_be_visible() == None
 
         #veryfing that no success communicate is shown
-        assert expect(self.__page__.get_by_text(f"Thanks for getting in touch {name}")).not_to_be_visible(timeout=10000) == None
-        assert expect(self.__page__.get_by_text("We'll get back to you about")).not_to_be_visible(timeout=10000) == None
-        assert expect(self.__page__.get_by_text("as soon as possible.")).not_to_be_visible(timeout=10000) == None
+        assert expect(self.page.get_by_text(f"Thanks for getting in touch {name}")).not_to_be_visible(timeout=10000) == None
+        assert expect(self.page.get_by_text("We'll get back to you about")).not_to_be_visible(timeout=10000) == None
+        assert expect(self.page.get_by_text("as soon as possible.")).not_to_be_visible(timeout=10000) == None
 
 
     #contact form - multiple error messages at once
@@ -143,25 +143,25 @@ class Test_ContactFormTests(FrontPagePOM):
         FrontPagePOM.send_email(self, name, email, phone, subject, description)
 
         #verifying all expected error messages
-        assert expect(self.__page__.get_by_text(f"{expected_error_1}")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text(f"{expected_error_2}")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text(f"{expected_error_3}")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text(f"{expected_error_4}")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text(f"{expected_error_5}")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{expected_error_1}")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{expected_error_2}")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{expected_error_3}")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{expected_error_4}")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{expected_error_5}")).to_be_visible() == None
 
         #veryfing that no success communicate is shown
-        assert expect(self.__page__.get_by_text(f"Thanks for getting in touch {name}")).not_to_be_visible(timeout=10000) == None
-        assert expect(self.__page__.get_by_text("We'll get back to you about")).not_to_be_visible(timeout=10000) == None
-        assert expect(self.__page__.get_by_text("as soon as possible.")).not_to_be_visible(timeout=10000) == None
+        assert expect(self.page.get_by_text(f"Thanks for getting in touch {name}")).not_to_be_visible(timeout=10000) == None
+        assert expect(self.page.get_by_text("We'll get back to you about")).not_to_be_visible(timeout=10000) == None
+        assert expect(self.page.get_by_text("as soon as possible.")).not_to_be_visible(timeout=10000) == None
 
         #adding correct data to previously bad fields and submitting again
         FrontPagePOM.send_email(self, name_ok, email_ok, phone_ok, subject_ok, description_ok)
 
         #verifying successful submission communiates after submitting again with correct data
-        assert expect(self.__page__.get_by_text(f"Thanks for getting in touch {name_ok}")).to_be_visible(timeout=30000) == None #extra time to process
-        assert expect(self.__page__.get_by_text("We'll get back to you about")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text(f"{subject_ok}")).to_be_visible() == None
-        assert expect(self.__page__.get_by_text("as soon as possible.")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"Thanks for getting in touch {name_ok}")).to_be_visible(timeout=30000) == None #extra time to process
+        assert expect(self.page.get_by_text("We'll get back to you about")).to_be_visible() == None
+        assert expect(self.page.get_by_text(f"{subject_ok}")).to_be_visible() == None
+        assert expect(self.page.get_by_text("as soon as possible.")).to_be_visible() == None
 
 
     #contact form - sql injection text fields
@@ -178,14 +178,14 @@ class Test_ContactFormTests(FrontPagePOM):
 
         #verifying all fields with injected data which will not pass general text validation
         if expected_error_1 != "":
-            assert expect(self.__page__.get_by_text(f"{expected_error_1}")).to_be_visible() == None
-            assert expect(self.__page__.get_by_text(f"{expected_error_2}")).to_be_visible() == None
-            assert expect(self.__page__.get_by_text(f"{expected_error_3}")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{expected_error_1}")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{expected_error_2}")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{expected_error_3}")).to_be_visible() == None
         else:   #veryfing only fields where injection pass general textvalidation
-            assert expect(self.__page__.get_by_text(f"Thanks for getting in touch {name}")).to_be_visible(timeout=10000) == None #extra time to process
-            assert expect(self.__page__.get_by_text("We'll get back to you about")).to_be_visible() == None
-            assert expect(self.__page__.get_by_text(f"{subject}")).to_be_visible() == None
-            assert expect(self.__page__.get_by_text("as soon as possible.")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"Thanks for getting in touch {name}")).to_be_visible(timeout=10000) == None #extra time to process
+            assert expect(self.page.get_by_text("We'll get back to you about")).to_be_visible() == None
+            assert expect(self.page.get_by_text(f"{subject}")).to_be_visible() == None
+            assert expect(self.page.get_by_text("as soon as possible.")).to_be_visible() == None
 
    
 
